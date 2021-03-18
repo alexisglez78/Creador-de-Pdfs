@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manuales Globalpaq</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma-rtl.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+        integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+        crossorigin="anonymous" />
+</head>
+
+<body onload="prueba();" id="body">
+    <style>
+        .btn {
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+
+        .alignTextarea {
+            margin-left: -13px;
+            min-width: 90%;
+            max-width: 90%;
+        }
+
+        .archivo {
+            position: absolute;
+            opacity: 0;
+            width: 26px;
+            margin-left: 1%;
+        }
+
+        .bordeado {
+            border: 2px dotted #bebebe;
+            border-top: none;
+        }
+
+        .ali {
+            width: 90%;
+        }
+
+        .hei {
+            height: 640px;
+
+        }
+
+        .fondo {
+            background-color: white;
+            height: 540px;
+        }
+
+        .modify {
+            background: none;
+            border: none;
+            font-size: 18px;
+            margin-right: 0px;
+            padding-right: 0px;
+        }
+
+        .imagenes {
+            width: 500px;
+        }
+
+        #contenedor {
+            height: 535px;
+        }
+
+        .botonPerson {
+            display: inline-block;
+            font-size: 18px;
+            width: 11%;
+            color: green;
+            border: none;
+            background: none !important;
+            margin-left: 1%;
+        }
+
+        #panelEditor {
+            width: 100%;
+        }
+    </style>
+
+
+    <div class="section" id="columnas">
+    </div>
+
+    <div class="container mt-5">
+        <div class="columns has-text-centered">
+            <div class="column">
+                <label class="title" id="NombreArea"></label>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5 ml-5" id="regresar">
+        <a class="button" onclick="regresar()"><i class="fas fa-chevron-left mr-2"></i>Regresar</a>
+    </div>
+    <div class="container" id="app">
+        <div class="modal" id="modal">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <div class="card">
+                    <header class="card-header">
+                        <p class="card-header-title">
+                            Tabla Personalizada
+                        </p>
+
+                    </header>
+                    <div class="card-content">
+                        <div class="content">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+                            <a href="#">@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
+                            <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                        </div>
+                    </div>
+                    <footer class="card-footer">
+                        <a href="#" class="card-footer-item">Guardar</a>
+                        <a href="#" class="card-footer-item " onclick="cerrarModal()">Cancelar</a>
+                    </footer>
+                </div>
+            </div>
+            <button class="modal-close is-large"></button>
+        </div>
+    </div>
+    <div class="section hei has-text-centered" id="panelEditor">
+        <div class="columns"
+            style="margin-top: -40px;margin-bottom: -1000px;background-color: rgb(226, 225, 224);margin-bottom: 1%;">
+            <div class="column">
+                <section class="section">
+                    <h1 class="title is-capitalized">
+                        editor
+                    </h1>
+                    <div class="container mb-5" id="contenedor" style="overflow-y: scroll;">
+                        <div class="columns" id="principal">
+                            <div class="column">
+                                <label class="checkbox">
+                                    <input type="checkbox" onchange="activarboton(this)">
+                                </label>
+                                <div class="select is-link" style="width: 90%;">
+                                    <select>
+                                        <option value="0">Seleccione su Componente</option>
+                                        <option value="1" selected>Titulo</option>
+                                        <option value="2">Titulo Centrado</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <input class="input ali" type="text" placeholder="input">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="has-text-centered">
+                        <a class="button is-info mr-2" onclick="nuevo()">Nuevo Elemento</a>
+                        <a class="button is-success " id="btnGuardar" onclick="guardar()">Guardar</a>
+                        <a class="button is-link ml-2" id="item" onclick="gNuevoEntre()"
+                            style="visibility: hidden;">Agregar
+                            despues de:</a>
+                    </div>
+                </section>
+            </div>
+            <div class="column">
+                <section class="section pb-4">
+                    <h1 class="title is-capitalized">
+                        vista previa <button class="button" onclick="imprimirDIV()" title="Imprimir PDF">
+                            <span class="icon is-small">
+                                <i class="far fa-file-pdf"></i>
+                            </span>
+                        </button>
+                    </h1>
+                    <div class="container" id="imprimir" style="background-color: white;overflow: scroll;">
+                        <div>
+                            <div class="columns">
+                                <div class="column">
+                                    <img src="./cabecera.png">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fondo section" id="resultado">
+                        </div>
+
+                    </div>
+                </section>
+            </div>
+        </div>
+        <footer class="footer">
+          <div class="content has-text-centered">
+            <p>
+              <strong>Realizado</strong> por <a href="https://github.com/alexisglez78">Paul Alexis Gonzalez</a>.
+            </p>
+          </div>
+        </footer>
+        <script src="https://cdn.jsdelivr.net/remarkable/1.7.1/remarkable.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.slim.js"
+            integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+        <script>
+            function modificar() {
+                $(".modal").addClass("is-active");
+            }
+            function cerrarModal() {
+                $(".modal").removeClass("is-active");
+            }
+            $("#showModal").click(function () {
+                $(".modal").addClass("is-active");
+            });
+
+            $(".modal-close").click(function () {
+                $(".modal").removeClass("is-active");
+            });
+        </script>
+        <script>
+            const Documento = (id) => {
+                return document.getElementById(id);
+            }
+
+            function regresar() {
+                Documento('columnas').style.display = 'inline-block';
+                Documento('regresar').style.display = 'none'
+                Documento('panelEditor').style.display = 'none'
+                Documento('NombreArea').style.display = 'none'
+            }
+            function prueba() {
+                Documento('panelEditor').style.display = 'none'
+                Documento('columnas').style.display = 'inline-block';
+                Documento('regresar').style.display = 'none'
+                for (let i = 0; i < 3; i++) {
+                    let columnaprincipal = document.createElement("div");
+                    columnaprincipal.setAttribute("class", "columns");
+                    let x = 4;
+                    if (i == 2) {
+                        x = 3;
+                    } else {
+                        x = 4;
+                    }
+                    for (let index = 0; index < x; index++) {
+                        var newDiv = document.createElement("div");
+
+                        let icono = '';
+                        let label = '';
+                        if (i == 0) {
+                            switch (index) {
+                                case 0:
+                                    icono = `<span class="icon">
+                                                <i class="fab fa-battle-net"></i>
+                                            </span>`;
+                                    label = 'Sistemas'
+                                    break;
+                                case 1:
+                                    icono = `<span class="icon">  
+                                                <i class="fas fa-chalkboard-teacher"></i>
+                                            </span>`;
+                                    label = 'Soporte Tecnico'
+                                    break;
+                                case 2:
+                                    icono = `<span class="icon">  
+                                                <i class="fas fa-phone-volume"></i>
+                                             </span>`;
+                                    label = 'Atencion a Clientes'
+                                    break;
+                                case 3:
+                                    icono = `<span class="icon">  
+                                             <i class="fas fa-piggy-bank"></i>
+                                            </span>`;
+                                    label = 'Cobranza'
+                                    break;
+
+                                default:
+                                    break;
+                            }
+                        }
+                        if (i == 1) {
+                            switch (index) {
+                                case 0:
+                                    icono = `<span class="icon">
+                                                <i class="fas fa-university"></i>
+                                            </span>`;
+                                    label = 'Finanzas'
+                                    break;
+                                case 1:
+                                    icono = `<span class="icon">  
+                                                <i class="fab fa-avianex"></i>
+                                            </span>`;
+                                    label = 'Desarrollo Comercial'
+                                    break;
+                                case 2:
+                                    icono = `<span class="icon">  
+                                              <i class="fas fa-binoculars"></i>
+                                             </span>`;
+                                    label = 'Integracion Comercial'
+                                    break;
+                                case 3:
+                                    icono = `<span class="icon">  
+                                              <i class="fas fa-users-slash"></i>
+                                             </span>`;
+                                    label = 'Recuperacion Comercial'
+                                    break;
+
+                                default:
+                                    break;
+                            }
+                        }
+                        if (i == 2) {
+                            switch (index) {
+                                case 0:
+                                    icono = `<span class="icon">
+                                               <i class="fas fa-ad"></i>
+                                             </span>`;
+                                    label = 'Marketing'
+                                    break;
+                                case 1:
+                                    icono = `<span class="icon">  
+                                                <i class="fas fa-motorcycle"></i>
+                                             </span>`;
+                                    label = 'Logistica'
+                                    break;
+                                case 2:
+                                    icono = `<span class="icon">  
+                                                <i class="fas fa-folder-minus"></i>
+                                            </span>`;
+                                    label = 'Capital Humano'
+                                    break;
+
+                                default:
+                                    break;
+                            }
+                        }
+
+
+                        newDiv.innerHTML = (`<div class='column'>
+                                                <button class='btn' id='${i}-${index}' onclick="cargarData(this,'${label}')">
+                                                    <div class='card'>
+                                                        <div class="card-content ">
+                                                        <div class="media">
+                                                            <div class="media-left is-size-4">
+                                                                ${icono}
+                                                            </div>
+                                                            <label class="subtitle ml-4 mt-2">${label}</label>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                </button>
+                                            </div>`);
+
+                        columnaprincipal.append(newDiv)
+                    }
+                    Documento('columnas').append(columnaprincipal)
+                }
+            }
+            var area = '';
+            var x = Documento('contenedor');
+
+            function cargarData(element, areas) {
+                Documento('columnas').style.display = 'none';
+                Documento('regresar').style.display = 'inline-block'
+                Documento('NombreArea').textContent = `${areas}`;
+                Documento('NombreArea').style.display = 'inline-block';
+
+                area = areas;
+                fetch('https://plantillas.globalpaq.mx/panel-control/obtenerData.php?area=' + areas + '', {
+                    method: 'GET'
+                })
+                    .then(resp => resp.json())
+                    .then(respuesta => {
+                        Documento('panelEditor').style.display = 'inline-block';
+                        let data = new Array();
+                        if (respuesta[0]) {
+                            data =respuesta[0][2];
+                        }
+                        y = Documento('resultado')
+                        y.innerHTML = ""
+
+                        while (x.children.length > 0) {
+                            x.children[0].remove();
+                        }
+                        for (let index = 0; index < data.length; index++) {
+                            const element = data[index];
+                            cargarEditor(element.valorselect, element.valor1, element.imagen, element.valor2, element.ent);
+                        }
+                        setTimeout(() => {
+                            let q = Documento('btnGuardar')
+                            q.click();
+                        }, 1000);
+                    })
+            }
+            function cargarEditor(valorselect, valor1, imagen, valor2, ent) {
+                var newDiv = document.createElement("div");
+                newDiv.setAttribute("class", "columns bordeado");
+                var newDiv2 = document.createElement("div");
+                newDiv2.setAttribute("class", "column");
+                let img = ''
+                if (ent == 'src') {
+                    img = `src="${imagen}"`;
+                } else {
+                    img = `src="https://plantillas.globalpaq.mx/panel-control/archivos/${imagen}"`
+                }
+                newDiv.innerHTML = (`
+                            <div class="column" >
+                                <label class="checkbox">
+                                      <input type="checkbox" onchange="activarboton(this)">
+                                    </label>
+                                <div class="select is-link" style="width:90%">
+                                    <select onchange= "generarinput(this)" >
+                                        <option value="0" >Seleccione su Componente</option>
+                                        <option value="1" ${(valorselect == 1) ? 'selected' : ''}>Titulo</option>
+                                        <option value="2" ${(valorselect == 2) ? 'selected' : ''}>Titulo Centrado</option>
+                                        <option value="3" ${(valorselect == 3) ? 'selected' : ''}>Subtitulo</option>
+                                        <option value="4" ${(valorselect == 4) ? 'selected' : ''}>Subtitulo Centrado</option>
+                                        <option value="5" ${(valorselect == 5) ? 'selected' : ''}>Subtitulo texto en rojo</option>
+                                        <option value="6" ${(valorselect == 6) ? 'selected' : ''}>Subtitulo texto en rojo centrado</option>
+                                        <option value="7" ${(valorselect == 7) ? 'selected' : ''}>Subtitulo 2</option>
+                                        <option value="8" ${(valorselect == 8) ? 'selected' : ''}>Subtitulo 2 Centrado</option>
+                                        <option value="9" ${(valorselect == 9) ? 'selected' : ''}>Subtitulo 2 texto en rojo</option>
+                                        <option value="10" ${(valorselect == 10) ? 'selected' : ''}>Subtitulo 2 texto en rojo Centrado</option>
+                                        <option value="11" ${(valorselect == 11) ? 'selected' : ''}>Texto</option>
+                                        <option value="12" ${(valorselect == 12) ? 'selected' : ''}>Imagen </option>
+                                        <option value="13" ${(valorselect == 13) ? 'selected' : ''}>Imagen Con Texto a la Derecha</option>
+                                        <option value="14" ${(valorselect == 14) ? 'selected' : ''}>Imagen Con Texto a la Izquierda</option>
+                                        <option value="15"" disabled>Tabla </option>
+                                    </select>
+                                </div>
+                            </div>
+                            `);
+                switch (valorselect) {
+                    case '11':
+                        newDiv2.innerHTML = (`
+                        
+                    <textarea class="textarea" placeholder="">${valor1}</textarea>
+                    <button class="delete mt-3 has-background-danger" onclick="eliminar(this)"/>
+                            `);
+                        break;
+                    case '12':
+
+                        newDiv2.innerHTML = (`
+                        <div class="columns ">
+                            <div class="column is-four-fifths has-background-light p-1 mt-3 mb-3">
+                                <img ${img} style="width:100%;">
+                            </div>
+                            <div class="column p-0 mt-5">
+                                <input type="file" class="archivo" onchange="cambiarVista(this)">
+                                <button class="botonPerson" style="color:green" onclick="eliminar(this,'imagenDiv','imagenPrincipal')">
+                                    <i class="far fa-edit"></i>
+                                </button>
+                                <button class="botonPerson has-background-danger has-text-danger"
+                                    onclick="eliminar(this,'imagenDiv','imagenPrincipal')">
+                                    <i class="fas fa-times-circle"></i>
+                                </button>
+                            </div>
+                        </div>
+                            `);
+                        break;
+                    case '13':
+                        newDiv2.innerHTML = (`
+                        <div class="columns ">
+                            <div class="column is-four-fifths has-background-light p-1 mt-3">
+                                <img ${img} style="width:100%;">
+                            </div>
+                            <div class="column p-0 mt-5">
+                                <input type="file" class="archivo" onchange="cambiarVista(this)">
+                                <button class="botonPerson" style="color:green" onclick="eliminar(this)">
+                                    <i class="far fa-edit"></i>
+                                </button>
+                                <button class="botonPerson has-background-danger has-text-danger" onclick="eliminar(this,'imagenDiv')">
+                                    <i class="fas fa-times-circle"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <textarea class="textarea mt-3 alignTextarea">${valor2}</textarea>
+                            `);
+                        break;
+                    case '14':
+                        newDiv2.innerHTML = (`
+                            <div class="columns ">
+                                <div class="column is-four-fifths has-background-light p-1 mt-3">
+                                    <img ${img} style="width:100%;">
+                                </div>
+                                <div class="column p-0 mt-5">
+                                    <input type="file" class="archivo" onchange="cambiarVista(this)">
+                                    <button class="botonPerson" style="color:green" onclick="eliminar(this,'imagenDiv')">
+                                        <i class="far fa-edit"></i>
+                                    </button>
+                                    <button class="botonPerson has-background-danger has-text-danger" onclick="eliminar(this,'imagenDiv')">
+                                        <i class="fas fa-times-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <textarea class="textarea mt-3 alignTextarea">${valor2}</textarea>
+                            `);
+                        break;
+
+                    default:
+                        newDiv2.innerHTML = (`
+                            <input class="input ali" type="text" placeholder="input" value="${valor1}">
+                            <button class="delete mt-3 has-background-danger" onclick="eliminar(this)"/>
+                            `);
+                        break;
+                }
+
+                x.append(newDiv)
+                newDiv.append(newDiv2)
+            }
+            function vaciarData() {
+                Documento('panelEditor').style.display = 'inline-block';
+
+                for (let index = 0; index < x.children.length; index++) {
+                    if (index == 0) {
+                        x.children[index].children[1].children[0].value = ''
+                        continue
+                    }
+                    x.children[index].remove();
+                }
+            }
+            async function guardar() {
+
+                y = Documento('resultado')
+                y.innerHTML = ""
+                let arr = Array();
+                let valor2 = '';
+
+                let data = new FormData();
+                let namesinacentos = '';
+
+                for (let index = 0; index < x.childNodes.length; index++) {
+                    let select = '';
+                    let name = ''
+                    let ent = ''
+                    if (x.childNodes[index].nodeName == 'DIV') {
+                        if (!x.childNodes[index].children[1]) {
+                            continue
+                        }
+                        valor = x.childNodes[index].children[1].children[0].value
+                        select = x.childNodes[index].children[0].children[1].children[0].value;
+
+                        if (x.childNodes[index].children[1].children[1]) {
+                            valor2 = x.childNodes[index].children[1].children[1].value
+
+                        }
+                        let imagen = "";
+
+                        if (valor == null) {
+                            if (x.childNodes[index].children[1].children[0].children[1]) {
+                                if (x.childNodes[index].children[1].children[0].children[1].children[0].files.length == 0) {
+                                    ent = 'src'
+                                    imagen = x.childNodes[index].children[1].children[0].children[0].children[0].src;
+                                } else {
+                                    imagen = x.childNodes[index].children[1].children[0].children[1].children[0];
+                                    ent = 'file'
+                                }
+                            }
+                        }
+                        if(valor){valor = valor.replace(/['"/]+/g, '');}
+                        if(valor2){valor2 = valor2.replace(/['"/ª]+/g, '');}
+                        
+                        let resp = elementos(select, valor, imagen, valor2, ent);
+                        let pr = '';
+                        if (ent == "file") {
+                            pr = imagen.files[0]
+                            name = imagen.files[0].name.split(".")[0]
+                            data.append(name, pr);
+                        }
+                        if (ent == "src") {
+                            name = imagen;
+                        }
+                     
+                        arr.push({ select, valor, pr, valor2, name, ent });
+                    } else {
+                        continue
+                    }
+                }
+
+                data.append('arr', JSON.stringify(arr));
+                data.append('area', area);
+                fetch('https://plantillas.globalpaq.mx/panel-control/guardarData.php', {
+                    body: data,
+                    method: 'POST'
+                })
+                    .then(resp => resp.json())
+                    .then(respuesta => {
+                        if (respuesta.error) {
+                            alert('Hubo un error al guardar u obtener su manual contacte a su administrador');
+                        }
+                    })
+            }
+            const removeAccents = (str) => {
+                return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            }
+            function elementos(select, valor = '', imagen = '', valor2 = '', ent = '') {
+                let columnaprincipal = document.createElement("div");
+                var src = ""
+                if (ent == 'file') {
+                    src = URL.createObjectURL(imagen.files[0]);
+                } else {
+                    src = imagen
+                }
+                if (select == '12') {
+                    columnaprincipal.setAttribute("class", "columns is-justify-content-center");
+                } else {
+                    columnaprincipal.setAttribute("class", "columns ");
+                }
+                
+                switch (select) {
+                    case '1':
+                        columnaprincipal.innerHTML = `<div class=" column title">${valor}</div>`
+                        y.append(columnaprincipal)
+                        break;
+                    case '2':
+                        columnaprincipal.innerHTML = `<div class=" column title has-text-centered">${valor}</div>`
+                        y.append(columnaprincipal)
+                        break;
+                    case '3':
+                        columnaprincipal.innerHTML = `<div class=" column subtitle has-text-left">${valor}</div>`
+                        y.append(columnaprincipal)
+                        break;
+                    case '4':
+                        columnaprincipal.innerHTML = `<div class=" column subtitle has-text-centered">${valor}</div>`
+                        y.append(columnaprincipal)
+                        break;
+                    case '5':
+                        columnaprincipal.innerHTML = `<div class=" column subtitle has-text-danger has-text-left">${valor}</div>`
+                        y.append(columnaprincipal)
+                        break;
+                    case '6':
+                        columnaprincipal.innerHTML = `<div class=" column subtitle has-text-danger has-text-centered">${valor}</div>`
+                        y.append(columnaprincipal)
+                        break;
+                    case '7':
+                        columnaprincipal.innerHTML = `<div class=" column subtitle is-size-6">${valor}</div>`
+                        y.append(columnaprincipal)
+                        break;
+                    case '8':
+                        columnaprincipal.innerHTML = `<div class=" column subtitle has-text-centered is-size-6">${valor}</div>`
+                        y.append(columnaprincipal)
+                        break;
+                    case '9':
+                        columnaprincipal.innerHTML = `<div class=" column subtitle has-text-danger has-text-left is-size-6">${valor}</div>`
+                        y.append(columnaprincipal)
+                        break;
+                    case '10':
+                        columnaprincipal.innerHTML = `<div class=" column subtitle has-text-danger has-text-centered is-size-6">${valor}</div>`
+                        y.append(columnaprincipal)
+                        break;
+                    case '11':
+                        columnaprincipal.innerHTML = `<div class="has-text-justified mb-4 ml-5 mr-5">${valor}</div>`
+                        y.append(columnaprincipal)
+                        break;
+                    case '12':
+
+                        columnaprincipal.innerHTML = `<div class="m-4"><img class="imagenes" src="${src}"/></div>`
+                        y.append(columnaprincipal)
+                        break;
+                    case '13':
+                        columnaprincipal.innerHTML = `
+                        <div class="m-4">
+                            <div class="columns">
+                                <div class="column">
+                            <img class="imagenes" src="${src}"/>
+
+                                </div>
+                                <div class="column has-text-justified">
+                                    ${valor2}
+                                </div>
+                                </div>
+                        </div>`
+                        y.append(columnaprincipal)
+                        break;
+                    case '14':
+                        columnaprincipal.innerHTML = `<div class="m-4">
+                            <div class="columns">
+                                <div class="column has-text-justified">
+                                    ${valor2}
+                                </div>
+                                <div class="column">
+                            <img class="imagenes" src="${src}"/>
+                                </div>
+                                </div>
+                            </div>`
+                        y.append(columnaprincipal)
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+            function nuevo() {
+                var newDiv = document.createElement("div");
+                newDiv.setAttribute("class", "columns bordeado");
+                newDiv.innerHTML = (`
+                            <div class="column " >
+                                <label class="checkbox">
+                                      <input type="checkbox" onchange="activarboton(this)">
+                                    </label>
+                                <div class="select is-link" style="width:90%">
+                                    <select onchange= "generarinput(this)">
+                                        <option value="0" selected>Seleccione su Componente</option>
+                                        <option value="1">Titulo</option>
+                                        <option value="2">Titulo Centrado</option>
+                                        <option value="3">Subtitulo</option>
+                                        <option value="4">Subtitulo Centrado</option>
+                                        <option value="5">Subtitulo texto en rojo</option>
+                                        <option value="6">Subtitulo texto en rojo centrado</option>
+                                        <option value="7">Subtitulo 2</option>
+                                        <option value="8">Subtitulo 2 Centrado</option>
+                                        <option value="9">Subtitulo 2 texto en rojo</option>
+                                        <option value="10">Subtitulo 2 texto en rojo Centrado</option>
+                                        <option value="11">Texto</option>
+                                        <option value="12">Imagen </option>
+                                        <option value="13">Imagen Con Texto a la Derecha</option>
+                                        <option value="14">Imagen Con Texto a la Izquierda</option>
+                                        <option value="15" disabled>Tabla </option>
+                                    </select>
+                                </div>
+                            </div>
+                            `);
+                x.append(newDiv)
+            }
+            function eliminar(x, imagenDiv, imagenPrincipal) {
+                if (imagenDiv) {
+                    x.parentNode.parentNode.parentNode.parentNode.remove()
+                } else {
+
+                    x.parentNode.parentNode.remove()
+                }
+            }
+            function activarboton(value) {
+                let chexked = false;
+                for (let index = 0; index < x.children.length; index++) {
+                    let ch = x.children[index].children[0].children[0].children[0].checked
+                    if (ch) {
+                        chexked = true
+                        Documento('item').style.visibility = 'visible';
+                        return
+                    } else {
+                        chexked = false
+                    }
+                }
+                if (chexked == true) {
+                    Documento('item').style.visibility = 'visible';
+                } else {
+                    Documento('item').style.visibility = 'hidden';
+                }
+            }
+            function input(i) {
+                let z = i.parentNode.parentNode.parentNode.children
+                if (z.length == 2) {
+                    z[1].remove();
+                }
+                var newDiv = document.createElement("div");
+
+                newDiv.setAttribute("class", "column");
+                switch (i.value) {
+                    case '11':
+                        newDiv.innerHTML = (`
+                        <textarea class="textarea" placeholder=""></textarea>
+                        <button class="delete mt-3 has-background-danger" onclick="eliminar(this)"/>
+                            `);
+                        break;
+                    case '12':
+                        newDiv.innerHTML = (`
+                        <div class="columns ">
+                            <div class="column is-four-fifths has-background-light p-1 mt-3">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTy4bQlU09VZRrazt46a-CA4qpxGG8sJhmdEQ&usqp=CAU"
+                                    style="width:100%;">
+                            </div>
+                            <div class="column p-0 mt-5">
+                                <input type="file" class="archivo" onchange="cambiarVista(this)">
+                                <button class="botonPerson" style="color:green" onclick="eliminar((this,'imagenDiv','imagenPrincipal'))">
+                                    <i class="far fa-edit"></i>
+                                </button>
+                                <button class="botonPerson has-background-danger has-text-danger"
+                                    onclick="eliminar((this,'imagenDiv','imagenPrincipal'))">
+                                    <i class="fas fa-times-circle"></i>
+                                </button>
+                            </div>
+                        </div>
+                            `);
+                        break;
+                    case '13':
+                        newDiv.innerHTML = (`
+                        <div class="columns ">
+                            <div class="column is-four-fifths has-background-light p-1 mt-3">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTy4bQlU09VZRrazt46a-CA4qpxGG8sJhmdEQ&usqp=CAU"
+                                    style="width:100%;">
+                            </div>
+                            <div class="column p-0 mt-5">
+                                <input type="file" class="archivo" onchange="cambiarVista(this)">
+                                <button class="botonPerson" style="color:green" onclick="eliminar(this,'imagenDiv')">
+                                    <i class="far fa-edit"></i>
+                                </button>
+                                <button class="botonPerson has-background-danger has-text-danger" onclick="eliminar(this,'imagenDiv')">
+                                    <i class="fas fa-times-circle"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <textarea class="textarea mt-3 alignTextarea" placeholder=""></textarea>
+                            `);
+                        break;
+                    case '14':
+                        newDiv.innerHTML = (`
+                        <div class="columns " >
+                                <div class="column is-four-fifths has-background-light p-1 mt-3">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTy4bQlU09VZRrazt46a-CA4qpxGG8sJhmdEQ&usqp=CAU" style="width:100%;">
+                                    </div>
+                                    <div class="column p-0 mt-5">
+                                        <input type="file" class="archivo" onchange="cambiarVista(this)">
+                                        <button class="botonPerson" style="color:green" onclick="eliminar(this,'imagenDiv')">
+                                        <i class="far fa-edit"></i>
+                                    </button>
+                                    <button class="botonPerson has-background-danger has-text-danger" onclick="eliminar(this,'imagenDiv')">
+                                        <i class="fas fa-times-circle"></i>
+                                    </button>
+                                </div>
+                        </div>
+                        <textarea class="textarea mt-3 alignTextarea" placeholder=""></textarea>
+                            `);
+                        break;
+
+
+
+                    default:
+                        newDiv.innerHTML = (`
+                        <input class="input ali" type="text" placeholder="input">
+                        <button class="delete mt-3 has-background-danger" onclick="eliminar(this)"/>
+                            `);
+                        break;
+                }
+                i.parentNode.parentNode.parentNode.append(newDiv)
+
+            }
+            function generarinput(element) {
+                const Resp = input(element);
+
+            }
+            function cambiarVista(element) {
+                let name = element.files[0].name.split(".")[0];
+                let rname = removeAccents(name)
+                if (rname != name) {
+                    alert('Una Imagen que Intentas Guardar Tiene Acentos Para Continuar Reenombrela');
+                    return;
+                }
+                element.parentNode.parentNode.children[0].children[0].src = URL.createObjectURL(element.files[0])
+            }
+            function gNuevoEntre() {
+                for (let index = 0; index < x.children.length; index++) {
+
+                    if (index == 10) {
+                        break
+                    }
+
+                    let ch = x.children[index].children[0].children[0].children[0].checked
+                    if (ch == true) {
+                        let elemento = document.createElement("div")
+                        elemento.setAttribute("class", "columns bordeado");
+                        elemento.innerHTML = (`
+                            <div class="column" >
+                                <label class="checkbox">
+                                      <input type="checkbox" onchange="activarboton(this)">
+                                    </label>
+                                <div class="select is-link" style="width:90%">
+                                    <select onchange= "generarinput(this)">
+                                        <option value="0" selected>Seleccione su Componente</option>
+                                        <option value="1">Titulo</option>
+                                        <option value="2">Titulo Centrado</option>
+                                        <option value="3">Subtitulo</option>
+                                        <option value="4">Subtitulo Centrado</option>
+                                        <option value="5">Subtitulo texto en rojo</option>
+                                        <option value="6">Subtitulo texto en rojo centrado</option>
+                                        <option value="7">Subtitulo 2</option>
+                                        <option value="8">Subtitulo 2 Centrado</option>
+                                        <option value="9">Subtitulo 2 texto en rojo</option>
+                                        <option value="10">Subtitulo 2 texto en rojo Centrado</option>
+                                        <option value="11">Texto</option>
+                                        <option value="12">Imagen </option>
+                                        <option value="13">Imagen Con Texto a la Derecha</option>
+                                        <option value="14">Imagen Con Texto a la Izquierda</option>
+                                        <option value="15" disabled>Tabla </option>
+                                    </select>
+                                </div>
+                            </div>
+                            `);
+                        insertAfter(x.children[index], elemento);
+
+                    }
+                }
+            }
+            function insertAfter(e, i) {
+                if (e.nextSibling) {
+                    e.parentNode.insertBefore(i, e.nextSibling);
+                } else {
+                    e.parentNode.appendChild(i);
+                }
+            }
+            function imprimirDIV() {
+                var elemento = Documento('imprimir')
+                var ventana = window.open("", "PRINT");
+                ventana.document.write("<html><head><title>" + document.title + "</title>");
+                ventana.document.write("<link rel='stylesheet' href='style.css'>");
+                ventana.document.write("</head><body >");
+                ventana.document.write(elemento.innerHTML);
+                ventana.document.close();
+                ventana.focus();
+                ventana.onload = function () {
+                    ventana.print();
+                    ventana.close();
+                };
+                return true;
+            }
+            function vistaPrevia() {
+                y = Documento('resultado')
+                y.innerHTML = ""
+                let valor2 = '';
+
+                for (let index = 0; index < x.childNodes.length; index++) {
+                    let select = '';
+                    let name = ''
+                    if (x.childNodes[index].nodeName == 'DIV') {
+                        if (!x.childNodes[index].children[1]) {
+                            continue
+                        }
+                        valor = x.childNodes[index].children[1].children[0].value
+                        select = x.childNodes[index].children[0].children[1].children[0].value;
+
+                        if (x.childNodes[index].children[1].children[1]) {
+                            valor2 = x.childNodes[index].children[1].children[1].value
+                        }
+                        let imagen = x.childNodes[index].children[1].children[0];
+                        let resp = elementos(select, valor, imagen, valor2);
+                    } else {
+                        continue
+                    }
+                }
+            }
+
+        </script>
+</body>
+</html>
